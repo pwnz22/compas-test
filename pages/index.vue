@@ -116,6 +116,8 @@ const pluses = [
       'Вся история штрафов сохраняется по машине и водителю, позволяет анализировать статистику по штрафам',
   },
 ];
+
+const isOpen = ref(false);
 </script>
 
 <template>
@@ -182,6 +184,7 @@ const pluses = [
             </button>
 
             <button
+              @click="isOpen = true"
               class="flex space-x-1 border border-primary rounded-lg px-[18px] py-[9px] hover:bg-primary group"
               type="button"
             >
@@ -247,4 +250,53 @@ const pluses = [
 
   <!-- Document Slider -->
   <section></section>
+
+  <!-- Main modal -->
+  <div
+    v-if="isOpen"
+    class="overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 max-h-full flex bg-black/50"
+  >
+    <div class="relative p-4 w-full max-w-2xl max-h-full text-right">
+      <!-- Modal content -->
+      <button class="mb-2 inline-block" type="button" @click="isOpen = false">
+        <svg
+          width="17"
+          height="17"
+          viewBox="0 0 17 17"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <line
+            x1="0.707107"
+            y1="1.29289"
+            x2="15.7071"
+            y2="16.2929"
+            stroke="white"
+            stroke-width="2"
+          />
+          <line
+            y1="-1"
+            x2="21.2132"
+            y2="-1"
+            transform="matrix(-0.707107 0.707107 0.707107 0.707107 17 2)"
+            stroke="white"
+            stroke-width="2"
+          />
+        </svg>
+      </button>
+
+      <div class="bg-white">
+        <iframe
+          width="100%"
+          height="315"
+          src="https://www.youtube.com/embed/pIzjgCcSaT4?si=7NJq1-G1xOSmsfyk"
+          title="YouTube video player"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allowfullscreen
+        ></iframe>
+      </div>
+    </div>
+  </div>
 </template>
