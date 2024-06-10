@@ -249,7 +249,9 @@ const isOpen = ref(false);
   </section>
 
   <!-- Document Slider -->
-  <section></section>
+  <section class="my-20">
+    <Slider />
+  </section>
 
   <!-- Main modal -->
   <div
