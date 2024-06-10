@@ -118,6 +118,23 @@ const pluses = [
 ];
 
 const isOpen = ref(false);
+
+const errors = ref(false);
+const autoNum = ref(null);
+const region = ref(null);
+const regTs = ref(null);
+
+const checkForm = (e) => {
+  e.preventDefault();
+  errors.value = false;
+
+  if (autoNum.value && region.value && regTs.value) {
+    alert('Данные отправлены');
+  }
+  if (!autoNum.value) errors.value = true;
+  if (!region.value) errors.value = true;
+  if (!regTs.value) errors.value = true;
+};
 </script>
 
 <template>
@@ -128,11 +145,13 @@ const isOpen = ref(false);
         Проверьте штрафы и зарегестрируйтесь в 1 клик
       </h1>
 
-      <form class="mt-[25px]">
+      <form @submit="checkForm" class="mt-[25px]">
         <div class="flex space-x-7.5">
           <label class="block w-[320px]">
             <span class="block text-xs mb-[5px]">Номер автомобиля</span>
             <input
+              v-model="autoNum"
+              :class="{ 'border-red-500': errors }"
               class="border border-[#bcbcbc] rounded h-[40px] px-2 w-full"
               type="text"
               placeholder=""
@@ -141,6 +160,8 @@ const isOpen = ref(false);
           <label class="block flex-1">
             <span class="block text-xs mb-[5px]">Регион</span>
             <input
+              v-model="region"
+              :class="{ 'border-red-500': errors }"
               class="border border-[#bcbcbc] rounded h-[40px] px-2 w-full"
               type="text"
               placeholder=""
@@ -152,6 +173,8 @@ const isOpen = ref(false);
             >Свидетельство о регистрации ТС</span
           >
           <input
+            v-model="regTs"
+            :class="{ 'border-red-500': errors }"
             class="border border-[#bcbcbc] rounded h-[40px] px-2 w-full"
             type="text"
             placeholder=""
@@ -162,7 +185,7 @@ const isOpen = ref(false);
           <div class="flex space-x-5">
             <button
               class="bg-primary hover:bg-primary/70 text-white rounded-lg px-[18px] py-[9px] flex items-center leading-[23.31px]"
-              type="button"
+              type="submit"
             >
               Проверить штрафы
 
